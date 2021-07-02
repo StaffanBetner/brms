@@ -93,7 +93,7 @@ compile_model <- function(model, backend, ...) {
 .compile_model_cmdstanr <- function(model, threads, opencl, silent = 1, ...) {
   require_package("cmdstanr")
   args <- list(...)
-  args$stan_file <- cmdstanr::write_stan_file(model)
+  args$stan_file <- cmdstanr::write_stan_file(modeldir = getOption("brms.persistent.model.storage", tempdir()))
   if (use_threading(threads)) {
     args$cpp_options$stan_threads <- TRUE
   }
